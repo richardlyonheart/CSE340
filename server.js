@@ -12,7 +12,7 @@ const app = express()
 const static = require("./routes/static")
 //Index route
 app.get("/", function(req,res){
-  render.render("index", {title: "Home"})
+  res.render("index", {title: "Home"})
 })
 
 
