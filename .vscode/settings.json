@@ -3,7 +3,7 @@
         {
             "pgOptions": {
                 "ssl": {
-                    "rejectUnauthorized": true
+                    "rejectUnauthorized": false
                 }
             },
             "previewLimit": 50,

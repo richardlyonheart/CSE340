@@ -10,6 +10,11 @@ const expressLayouts = require("express-ejs-layouts");
 const env = require("dotenv").config();
 const app = express();
 const static = require("./routes/static");
+const baseController = require("./controllers/baseController");
+const inventoryRoute = require("./routes/inventoryRoute");
+const errorRoute = require("./routes/errorRoute");
+const utilities = require("./utilities/")
+
 
 /* ***********************
  * View Engine and Templates
@@ -24,8 +29,15 @@ app.set("layout", "./layouts/layout");
 app.use(static);
 
 //Index route
-app.get("/", function(req,res){
-  res.render("index", {title: "Home"})
+app.get("/", utilities.handleErrors(baseController.buildHome));
+//Inv Route
+app.use("/inv", inventoryRoute);
+//error route
+app.use("/error", errorRoute);
+
+// FILE NOT FOUND MUST BE LAST IN ROUTES
+app.use(async (req, res, next) => {
+  next({status: 404, message: "sorry page must have run away."});
 });
 
 /* ***********************
@@ -41,3 +53,14 @@ const host = process.env.HOST;
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 });
+
+/*express error handler*/
+app.use(async (err,req,res,next)=> {
+  let nav = await utilities.getNav();
+  console.error(`error at: "${req.originalUrl}": ${err.message}`);
+  res.render("errors/error", {
+    title: err.status || "server error",
+    message: err.message,
+    nav,
+  })
+})

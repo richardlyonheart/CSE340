@@ -2,10 +2,81 @@
 :after {
   box-sizing: border-box;
 }
+
 body {
   display: flex;
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#vehicle-details {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+.vehicle-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  gap: 16px;
+}
+
+.vehicle-image-container img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.vehicle-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vehicle-details-container h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.vehicle-details-container p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #ddd;
+  margin-top: 2rem;
+}
+
+.footer p,
+.footer a {
+  margin: 0;
+}
+
+.error-link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.error-link:hover {
+  text-decoration: underline;
+}
+
+.vehicle-details-container .price {
+  color: blue;
+  font-weight: bold;
+  margin-top: 16px;
+  font-size: 20px;
 }
 
 #hero,
@@ -61,6 +132,34 @@ body {
   border-radius: 10px;
 }
 
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0 1rem;
+  margin: 0;
+}
+
+#inv-display li {
+  background: antiquewhite;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 1rem;
+  text-align: center;
+}
+
+#inv-display li:hover {
+  background-color: lightblue;
+}
+
+#inv-display li img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 #top-header {
   display: flex;
   justify-content: space-between;
@@ -100,10 +199,18 @@ body {
 
 #main-nav ul li {
   margin: 5px 0;
-  color: white;
-  text-decoration: none;
   font-size: 1rem;
   padding: 5px 10px;
+}
+
+#main-nav ul li:hover {
+  background-color: white;
+  color: black;
+}
+
+#main-nav ul li a {
+  color: white;
+  text-decoration: none;
 }
 
 #reviews {
@@ -127,6 +234,12 @@ body {
 #reviews li {
   font-size: 1rem;
   margin-bottom: 5px;
+}
+
+.error-message {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 600px;
 }
 
 .upgrade-grid {
@@ -247,4 +360,13 @@ body {
   #reviews ul {
     margin-left: 5%;
   }
+  .vehicle-container {
+    flex-direction: row;
+    gap: 32px;
+}
+
+.vehicle-image-container,
+.vehicle-details-container {
+    flex: 1;
+}
 }
