@@ -17,4 +17,11 @@ const express = require("express")
      utilities.handleErrors(accountController.registerAccount)
  )
  
+ router.post(
+    "/login",
+    (req,res) => {
+        res.status(200).senc('login process')
+    }
+ )
+ 
  module.exports = router;

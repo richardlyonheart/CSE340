@@ -1,463 +1,488 @@
 :before,
 :after {
-  box-sizing: border-box;
-}
-
-#login-form,
- #register-form {
-   max-width: 400px;
-   margin: 2rem auto;
-   padding: 2rem;
-   background-color: #f0f8ff;
-   border: 1px solid #b0c4de;
-   border-radius: 8px;
-   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
- }
- 
- #login-form label,
- #register-form label {
-   display: block;
-   margin-bottom: 0.5rem;
-   font-weight: bold;
-   color: #1b007a;
- }
- 
- #register-link {
-   display: block;
-   margin: 0 auto;
-   text-align: center;
-   text-decoration: none;
- }
- 
- #register-link:hover {
-   text-decoration: underline;
- }
- 
- #login-form input,
- #register-form input {
-   width: 100%;
-   padding: 0.75rem;
-   margin-bottom: 1rem;
-   border: 1px solid #b0c4de;
-   border-radius: 4px;
-   font-size: 1rem;
-   background-color: #ffffff;
-   color: #000;
-   box-sizing: border-box;
- }
- 
- #login-form input:focus,
- #register-form input:focus {
-   outline: none;
-   border-color: #1b007a;
-   box-shadow: 0 0 4px #1b007a;
- }
- 
- #login-form button,
- #register-form button {
-   width: 100%;
-   padding: 0.75rem;
-   font-size: 1.1rem;
-   color: whitesmoke;
-   background-color: #1b007a;
-   border: none;
-   border-radius: 5px;
-   transition: background-color 0.3s ease;
- }
- 
- #login-form button:hover,
- #register-form button:hover {
-   background-color: black;
- }
- .notice {
-   color: red;
- }
- 
- #passwordButton {
-   width: 40%;
-   padding: 0.2rem;
-   font-size: 0.75rem;
-   color: whitesmoke;
-   background-color: #1b007a;
-   border: none;
-   border-radius: 5px;
-   margin: 1rem auto;
-   display: block;
-   text-align: center;
- }
- 
- #register-form input:required:invalid {
-   box-shadow: 0 0 4px red;
- }
- 
- #register-form input:required:valid {
-   box-shadow: 0 0 4px green;
- }
-
-body {
-  display: flex;
-  flex-direction: column;
-  font-family: 'Roboto', sans-serif;
-}
-
-h1 {
-  margin: 0 auto;
-  text-align: center;
-}
-
-#vehicle-details {
-  display: flex;
-  justify-content: center;
-  padding: 16px;
-}
-
-.vehicle-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 800px;
-  gap: 16px;
-}
-
-.vehicle-image-container img {
-  max-width: 100%;
-  border-radius: 8px;
-}
-
-.vehicle-details-container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.vehicle-details-container h1 {
-  font-size: 24px;
-  margin-bottom: 8px;
-}
-
-.vehicle-details-container p {
-  margin: 0;
-  line-height: 1.5;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background-color: #f8f8f8;
-  border-top: 1px solid #ddd;
-  margin-top: 2rem;
-}
-
-.footer p,
-.footer a {
-  margin: 0;
-}
-
-.error-link {
-  text-decoration: none;
-  color: #007bff;
-}
-
-.error-link:hover {
-  text-decoration: underline;
-}
-
-.vehicle-details-container .price {
-  color: blue;
-  font-weight: bold;
-  margin-top: 16px;
-  font-size: 20px;
-}
-
-#hero,
-#upgrades,
-#reviews {
-  font-family: 'Lato', sans-serif;
-}
-
-#hero {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-#hero-image {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-#hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 40%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: blue;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#hero-overlay h2,
-#hero-overlay h3 {
-  display: block;
-  margin: 0;
-}
-
-#hero-overlay h2 {
-  font-size: 1rem;
-}
-
-#hero-overlay h3 {
-  font-size: 0.80rem;
-}
-
-#hero-overlay a {
-  color: white;
-  background-color: blue;
-  padding: 0.5rem;
-  border-radius: 10px;
-}
-
-#inv-display {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  list-style: none;
-  padding: 0 1rem;
-  margin: 0;
-}
-
-#inv-display li {
-  background: antiquewhite;
-  border: 1px solid black;
-  border-radius: 20px;
-  padding: 1rem;
-  text-align: center;
-}
-
-#inv-display li:hover {
-  background-color: lightblue;
-}
-
-#inv-display li img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-#top-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  color: black;
-}
-
-#page-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: black;
-}
-
-#page-title a {
-  color: black;
-  text-decoration: none;
-}
-
-#tools a {
-  color: black;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
-#main-nav ul {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  list-style: none;
-  background-color: #1b007a;
-  padding: 10px 0;
-  justify-content: space-around;
-}
-
-#main-nav ul li {
-  margin: 5px 0;
-  font-size: 1rem;
-  padding: 5px 10px;
-}
-
-#main-nav ul li:hover {
-  background-color: white;
-  color: black;
-}
-
-#main-nav ul li a {
-  color: white;
-  text-decoration: none;
-}
-
-#reviews {
-  padding: 20px;
-  background-color: #f0f0f0;
-}
-
-#upgrades h3,
-#reviews h3 {
-  font-size: 1.5rem;
-  text-align: left;
-  margin-bottom: 10px;
-  padding-left: 10px;
-}
-
-#reviews ul {
-  /* list-style: none; */
-  padding-left: 0;
-}
-
-#reviews li {
-  font-size: 1rem;
-  margin-bottom: 5px;
-}
-
-.error-message {
-  text-align: center;
-  margin: 0 auto;
-  max-width: 600px;
-}
-
-.upgrade-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.upgrade-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-}
-
-.upgrade-card:hover {
-  transform: scale(1.05);
-}
-
-.upgrade-card img {
-  background-color: #007bff;
-  width: 150px;
-  height: 150px;
-  padding: 10px;
-  object-fit: contain;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.upgrade-card a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-#content-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-}
-
-@media screen and (min-width: 900px) {
-  body {
-    background-image: url('/images/site/small_check.jpg');
-    background-size: cover;
-    background-position: center;
+    box-sizing: border-box;
   }
-
-
+  #login-form,
+  #register-form,
+  #add-class-form,
+  #add-id-form  {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f0f8ff;
+    border: 1px solid #b0c4de;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #login-form label,
+  #register-form label,
+  #add-class-form label,
+  #add-id-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #1b007a;
+  }
+  
+  #register-link {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  #register-link:hover {
+    text-decoration: underline;
+  }
+  
+  #login-form input,
+  #register-form input,
+  #add-class-form input,
+  #add-id-form input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #b0c4de;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #000;
+    box-sizing: border-box;
+  }
+  
+  #login-form input:focus,
+  #register-form input:focus
+  #add-class-form input:focus,
+  #add-id-form input:focus {
+    outline: none;
+    border-color: #1b007a;
+    box-shadow: 0 0 4px #1b007a;
+  }
+  
+  #login-form button,
+  #register-form button,
+  #add-class-form button,
+  #add-id-form button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    color: whitesmoke;
+    background-color: #1b007a;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #login-form button:hover,
+  #register-form button:hover,
+  #add-class-form button:hover,
+  #add-id-form button:hover {
+    background-color: black;
+  }
+  .notice {
+    color: red;
+  }
+  
+  .management-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+  }
+  
+  #passwordButton {
+    width: 40%;
+    padding: 0.2rem;
+    font-size: 0.75rem;
+    color: whitesmoke;
+    background-color: #1b007a;
+    border: none;
+    border-radius: 5px;
+    margin: 1rem auto;
+    display: block;
+    text-align: center;
+  }
+  
+  #register-form input:required:invalid,
+  #add-class-form input:required:invalid,
+  #add-id-form input:required:invalid {
+    box-shadow: 0 0 4px red;
+  }
+  
+  #register-form input:required:valid,
+  #add-class-form input:required:valid,
+  #add-id-form input:required:valid {
+    box-shadow: 0 0 4px green;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  h1 {
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  #vehicle-details {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+  }
+  
+  .vehicle-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    gap: 16px;
+  }
+  
+  .vehicle-image-container img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
+  .vehicle-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .vehicle-details-container h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .vehicle-details-container p {
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #ddd;
+    margin-top: 2rem;
+  }
+  
+  .footer p,
+  .footer a {
+    margin: 0;
+  }
+  
+  .error-link {
+    text-decoration: none;
+    color: rgb(8, 8, 104);
+  }
+  
+  .error-link:hover {
+    text-decoration: underline;
+  }
+  
+  .vehicle-details-container .price {
+    color: blue;
+    font-weight: bold;
+    margin-top: 16px;
+    font-size: 20px;
+  }
+  
+  #hero,
+  #upgrades,
+  #reviews {
+    font-family: 'Lato', sans-serif;
+  }
+  
+  #hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  #hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
   #hero-overlay {
-    top: 10%;
-    left: 5%;
-    width: 60%;
-    height: 60%;
-    background-color: rgba(204, 204, 204, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
     color: blue;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    border-radius: 1rem;
-}
-
-
-#hero-overlay h2 {
-  font-size: 1.5rem;
-}
-
-#hero-overlay h3 {
-  font-size: 1.2rem;
-}
-
-  #wrapper {
-    width: 80%;
-    background-color: white;
-    border: 10px solid blue;
+    align-items: center;
+  }
+  
+  #hero-overlay h2,
+  #hero-overlay h3 {
+    display: block;
+    margin: 0;
+  }
+  
+  #hero-overlay h2 {
+    font-size: 1rem;
+  }
+  
+  #hero-overlay h3 {
+    font-size: 0.80rem;
+  }
+  
+  #hero-overlay a {
+    color: white;
+    background-color: blue;
+    padding: 0.5rem;
+    border-radius: 10px;
+  }
+  
+  #inv-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0 1rem;
+    margin: 0;
+  }
+  
+  #inv-display li {
+    background: antiquewhite;
+    border: 1px solid black;
     border-radius: 20px;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  #inv-display li:hover {
+    background-color: lightblue;
+  }
+  
+  #inv-display li img {
+    max-width: 100%;
+    height: auto;
+    display: block;
     margin: 0 auto;
   }
-
-  #hero {
-    width: 80%;
-    margin: 0 auto;
-  }
-
-  #hero-overlay {
-    width: 30%;
-  }
-
-  #content-container {
-    flex-direction: row;
+  
+  #top-header {
+    display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: black;
   }
-
-  #reviews, 
-  #upgrades {
-    width: 48%;
-  }
-
+  
   #page-title {
-    font-size: 3rem;
-  }
-
-  #tools a {
-    font-size: 1.2rem;
-  }
-  #reviews li {
     font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+  }
+  
+  #page-title a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  #tools a {
+    color: black;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  #main-nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    background-color: #1b007a;
+    padding: 10px 0;
+    justify-content: space-around;
+  }
+  
+  #main-nav ul li {
+    margin: 5px 0;
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+  
+  #main-nav ul li:hover {
+    background-color: white;
+  }
+  
+  #main-nav ul li:hover a {
+    color: black;
+  }
+  
+  #main-nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  #reviews {
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  #upgrades h3,
+  #reviews h3 {
+    font-size: 1.5rem;
+    text-align: left;
+    margin-bottom: 10px;
+    padding-left: 10px;
+  }
+  
+  #reviews ul {
+    /* list-style: none; */
+    padding-left: 0;
+  }
+  
+  #reviews li {
+    font-size: 1rem;
     margin-bottom: 5px;
   }
-
-  #reviews ul {
-    margin-left: 5%;
+  
+  .error-message {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px;
   }
-  .vehicle-container {
-    flex-direction: row;
-    gap: 32px;
-}
-
-.vehicle-image-container,
-.vehicle-details-container {
-    flex: 1;
-}
-}
+  
+  .upgrade-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .upgrade-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .upgrade-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .upgrade-card img {
+    background-color: #007bff;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .upgrade-card a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  #content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  @media screen and (min-width: 900px) {
+    body {
+      background-image: url('/images/site/small_check.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+  
+  
+    #hero-overlay {
+      top: 10%;
+      left: 5%;
+      width: 60%;
+      height: 60%;
+      background-color: rgba(204, 204, 204, 0.9);
+      color: blue;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: 1rem;
+  }
+  
+  
+  #hero-overlay h2 {
+    font-size: 1.5rem;
+  }
+  
+  #hero-overlay h3 {
+    font-size: 1.2rem;
+  }
+  
+    #wrapper {
+      width: 80%;
+      background-color: white;
+      border: 10px solid blue;
+      border-radius: 20px;
+      margin: 0 auto;
+    }
+  
+    #hero {
+      width: 80%;
+      margin: 0 auto;
+    }
+  
+    #hero-overlay {
+      width: 30%;
+    }
+  
+    #content-container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    #reviews, 
+    #upgrades {
+      width: 48%;
+    }
+  
+    #page-title {
+      font-size: 3rem;
+    }
+  
+    #tools a {
+      font-size: 1.2rem;
+    }
+    #reviews li {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+  
+    #reviews ul {
+      margin-left: 5%;
+    }
+    .vehicle-container {
+      flex-direction: row;
+      gap: 32px;
+  }
+  
+  .vehicle-image-container,
+  .vehicle-details-container {
+      flex: 1;
+  }
+  }

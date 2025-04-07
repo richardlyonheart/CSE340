@@ -1,0 +1,27 @@
+<!-- Content Heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Message Block -->
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+<section class="management-container">
+<form action="/inv/add-classification" method="get" class="management-button">
+    <button type="submit">Add New Classification</button>
+</form>
+
+
+<form action="/inv/add-inventory" method="get" class="management-button">
+    <button type="submit">Add New Inventory</button>
+</form>
+</section>
