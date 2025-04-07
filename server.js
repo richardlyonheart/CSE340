@@ -5,6 +5,7 @@
 /* ***********************
  * Require Statements
  *************************/
+const cookieParser= require("cookie-parser");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const env = require("dotenv").config();
@@ -16,8 +17,9 @@ const accountRoute = require("./routes/accountRoute");
 const errorRoute = require("./routes/errorRoute");
 const utilities = require("./utilities/");
 const session = require("express-session");
- const pool = require('./database/');
- const bodyParser = require("body-parser");
+const pool = require('./database/');
+const bodyParser = require("body-parser");
+const cookie = require("express-session/session/cookie");
 
  app.use(session({
   store: new (require('connect-pg-simple')(session))({
@@ -41,6 +43,8 @@ app.use(function(req, res, next){
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+//cookieparser
+app.use(cookieParser());
 
 /* ***********************
  * View Engine and Templates
