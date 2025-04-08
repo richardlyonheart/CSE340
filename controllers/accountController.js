@@ -243,7 +243,7 @@ async function updateAccount(req, res, next) {
 }
 
 /* ****************************************
- *  Change passwork logic
+ *  Change password logic
  * ************************************ */
 async function changePassword(req, res, next) {
   const { new_password, account_id } = req.body;

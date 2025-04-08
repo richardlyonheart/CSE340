@@ -1,0 +1,31 @@
+<!-- Content Heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Message Block -->
+<%- messages() %>
+
+  <form id="delete-form" action="/inv/delete" method="POST">
+  
+    <label for="inv_make">Make</label>
+    <input type="text" id="inv_make" name="inv_make" required minlength="3" value="<%= locals.inv_make || '' %>" readonly>
+  
+    <label for="inv_model">Model</label>
+    <input type="text" id="inv_model" name="inv_model" required minlength="3" value="<%= locals.inv_model || '' %>" readonly>
+  
+    <label for="inv_year">Year</label>
+    <input type="text" id="inv_year" name="inv_year" required pattern="\d{4}" value="<%= locals.inv_year || '' %>" readonly>
+  
+    <label for="inv_price">Price</label>
+    <input type="number" id="inv_price" name="inv_price" value="<%= locals.inv_price || '' %>" required step="0.01" readonly>
+  
+    <p>Confirm Deletion - This action is permanent and cannot be undone.</p>
+    <input type="submit" name="submit" id="submitButtonForDelete" value="Delete Vehicle">
+
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+  </form>

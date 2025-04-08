@@ -5,3 +5,5 @@
 --SELECT * FROM classification;
 
 --SELECT * FROM inventory;
+
+--SELECT * FROM review;
