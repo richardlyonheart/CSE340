@@ -1,4 +1,4 @@
-/* ******************************************
+/*******************************************
  * This server.js file is the primary file of the
  * application. It is used to control the project.
  *******************************************/
@@ -27,35 +27,30 @@ const messages = require("express-messages");
 /* ***********************
  * Middleware
  *************************/
-app.use((req, res, next) => {
-  console.log("Session data on every request:", req.session);
-  next();
-});
-
 
 // Session Middleware
-app.use(
-  session({
-    store: new pgSession({
-      pool: pool,
-      tableName: "session",
-      createTableIfMissing: true,
+app.use(session({
+    store: new (require('connect-pg-simple')(session))({
+        createTableIfMissing: true,
+        pool,
     }),
-    secret: process.env.SESSION_SECRET || "default_secret",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 60000,
-      secure: process.env.NODE_ENV === "production",
-    },
-  })
-);
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    name: 'sessionId',
+}));
 
 // Flash Middleware
 app.use(flash());
 app.use((req, res, next) => {
-  res.locals.messages = messages(req, res);
-  next();
+    res.locals.messages = messages(req, res);
+    next();
+});
+
+// Middleware to Make User Globally Available in Views
+app.use((req, res, next) => {
+    res.locals.user = req.user || { isLoggedIn: false }; // Default: Not logged in
+    next();
 });
 
 // Cookie Parser
@@ -66,16 +61,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // JWT Token Validation
-app.use(utilities.checkJWTToken);
+app.use((req, res, next) => {
+    if (req.path === "/account/login" || req.path === "/account/register") {
+        return next(); // Skip JWT check for login and register
+    }
+    utilities.checkJWTToken(req, res, next);
+});
 
 // Populate Navigation for All Responses
 app.use(async (req, res, next) => {
-  try {
-    res.locals.nav = await utilities.getNav();
-    next();
-  } catch (err) {
-    next(err);
-  }
+    try {
+        res.locals.nav = await utilities.getNav();
+        next();
+    } catch (err) {
+        next(err);
+    }
 });
 
 // Serve Static Files
@@ -100,7 +100,7 @@ app.use("/inv", inventoryRoute);
 
 // Test Route
 app.get("/account/test", (req, res) => {
-  res.send("Account test route is working");
+    res.send("Account test route is working");
 });
 
 // Intentional Error Route
@@ -108,25 +108,25 @@ app.use("/error", errorRoute);
 
 // Flash Test Route
 app.get("/test-flash", (req, res) => {
-  req.flash("success", "Flash message is working!");
-  res.redirect("/account/login");
+    req.flash("success", "Flash message is working!");
+    res.redirect("/account/login");
 });
 
 // 404 Not Found Route - Must Be Last
 app.use((req, res, next) => {
-  next({ status: 404, message: "Sorry, we appear to have lost that page." });
+    next({ status: 404, message: "Sorry, we appear to have lost that page." });
 });
 
 /* ***********************
  * Express Error Handler
  *************************/
 app.use((err, req, res, next) => {
-  console.error(`Error at "${req.originalUrl}": ${err.message}`);
-  res.status(err.status || 500).render("errors/error", {
-    title: err.status || "Server Error",
-    message: err.message || "An unknown error occurred.",
-    nav: res.locals.nav,
-  });
+    console.error(`Error at "${req.originalUrl}": ${err.message}`);
+    res.status(err.status || 500).render("errors/error", {
+        title: err.status || "Server Error",
+        message: err.message || "An unknown error occurred.",
+        nav: res.locals.nav,
+    });
 });
 
 /* ***********************
@@ -136,5 +136,5 @@ const port = process.env.PORT || 3000;
 const host = process.env.HOST || "localhost";
 
 app.listen(port, () => {
-  console.log(`Server is running at http://${host}:${port}`);
+    console.log(`Server is running at http://${host}:${port}`);
 });

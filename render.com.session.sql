@@ -7,3 +7,5 @@
 --SELECT * FROM inventory;
 
 --SELECT * FROM review;
+
+--select * from account;

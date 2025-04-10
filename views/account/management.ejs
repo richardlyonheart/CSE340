@@ -10,7 +10,7 @@
   
   <section id="accountPage">
     <h2>Welcome <%= user.first_name %></h2>
-    <% if (user.account_type === "Employee" || user.account_type === "Admin") { %>
+    <% if (user.account_type === "employee" || user.account_type === "admin") { %>
       <p>Inventory Management</p>
       <a href="/inv">Go to Inventory Management</a>
     <% } %>

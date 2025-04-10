@@ -44,19 +44,19 @@ router.post(
 // ==========================
 
 // Route for inventory management page
-router.get("/", restrictToRoles(["Employee", "Admin"]), utilities.handleErrors(invManagementController.buildInvManagement));
+router.get("/", restrictToRoles(["employee", "admin"]), utilities.handleErrors(invManagementController.buildInvManagement));
 
 // Routes for deleting inventory items
-router.get("/delete/:inv_id", restrictToRoles(["Employee", "Admin"]), utilities.handleErrors(invManagementController.buildDeleteView));
-router.post("/delete", restrictToRoles(["Employee", "Admin"]), utilities.handleErrors(invManagementController.processDelete));
+router.get("/delete/:inv_id", restrictToRoles(["employee", "admin"]), utilities.handleErrors(invManagementController.buildDeleteView));
+router.post("/delete", restrictToRoles(["employee", "admin"]), utilities.handleErrors(invManagementController.processDelete));
 
 // Route for editing inventory items in management view
-router.get("/edit/:inv_id", restrictToRoles(["Employee", "Admin"]), utilities.handleErrors(invManagementController.editInventoryView));
+router.get("/edit/:inv_id", restrictToRoles(["employee", "admin"]), utilities.handleErrors(invManagementController.editInventoryView));
 
 // Route for updating inventory
 router.post(
   "/update",
-  restrictToRoles(["Employee", "Admin"]),
+  restrictToRoles(["employee", "admin"]),
   newInventoryRules(),
   checkUpdateData,
   utilities.handleErrors(invManagementController.updateInventoryResult)
@@ -65,20 +65,20 @@ router.post(
 // Route for adding classification
 router.get(
   "/add-classification",
-  restrictToRoles(["Employee", "Admin"]),
+  restrictToRoles(["employee", "admin"]),
   utilities.handleErrors(invManagementController.buildAddClassification)
 );
 router.post(
   "/add-classification",
-  restrictToRoles(["Employee", "Admin"]),
+  restrictToRoles(["employee", "admin"]),
   utilities.handleErrors(invManagementController.addClassResult)
 );
 
 // Routes for adding inventory
-router.get("/add-inventory", restrictToRoles(["Employee", "Admin"]), utilities.handleErrors(invManagementController.buildAddInventory));
+router.get("/add-inventory", restrictToRoles(["employee", "admin"]), utilities.handleErrors(invManagementController.buildAddInventory));
 router.post(
   "/add-inventory",
-  restrictToRoles(["Employee", "Admin"]),
+  restrictToRoles(["employee", "admin"]),
   [
     body("classification_id").notEmpty().withMessage("Classification is required."),
     body("inv_make").isLength({ min: 3 }).withMessage("Make must be at least 3 characters long."),
