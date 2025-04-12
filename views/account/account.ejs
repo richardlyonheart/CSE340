@@ -1,0 +1,18 @@
+<!-- Content Heading -->
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { %>
+  <h1>Welcome</h1>
+<% } %>
+
+<!-- Message Block -->
+<%- messages('messages', locals) %>
+
+<section id="accountPage">
+  <h2>Welcome <%= user.first_name %></h2>
+  <% if (user.account_type === "employee" || user.account_type === "admin") { %>
+    <p>Inventory Management</p>
+    <a href="/inv">Go to Inventory Management</a>
+  <% } %>
+  <p><a href="/account/update">Update Account Information</a></p>
+</section>

@@ -1,75 +1,55 @@
-// Required Resources
+// Needed Resources
 const express = require("express");
 const router = new express.Router();
 const accountController = require("../controllers/accountController");
 const utilities = require("../utilities/");
-const {
-    registationRules,
-    checkRegData,
-    loginRules,
-    checkLoginData
-} = require("../utilities/account-validation");
+const { registationRules, checkRegData, loginRules, checkLoginData } = require('../utilities/account-validation');
 
-// Debugging Logs for Utilities and Controllers
-console.log("Type of handleErrors:", typeof utilities.handleErrors);
-console.log("Type of checkJWTToken:", typeof utilities.checkJWTToken);
-console.log("Type of checkLogin:", typeof utilities.checkLogin);
-console.log("Type of buildManagement:", typeof accountController.buildManagement);
-
-// Route for Account Management
-router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement));
-
-// Route for displaying the login page
+// Route for when 'My Account' is clicked
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
-// Route for displaying the registration page
+// Route for register button
 router.get("/register", utilities.handleErrors(accountController.buildRegistration));
 
-// Route for accessing 'My Account' page
-router.get("/account", utilities.checkJWTToken, accountController.buildAccount);
+router.get("/account", utilities.checkJWTToken, (req, res) => {
+  if (!res.locals.accountData) {
+    req.flash("notice", "Please log in to access this page.");
+    return res.redirect("/account/login");
+  }
 
-// Route for handling the registration form submission
-router.post(
-    "/register",
-    registationRules(), // Ensure validation rules are applied
-    checkRegData,       // Middleware to check form data
-    utilities.handleErrors(accountController.registerAccount)
-);
-
-// Route for processing the login request
-router.post(
-    "/login",
-    loginRules(),      // Ensure login validation rules are applied
-    checkLoginData,    // Middleware to check login data
-    utilities.handleErrors(async (req, res) => {
-        // Example login logic
-        const user = {
-            first_name: "Brenden", // Sample user data
-            account_type: "employee",
-            isLoggedIn: true
-        };
-        req.user = user; // Attach user info to request
-        res.render("account/management", { user,
-          title: "Account Management"
-         });
-    })
-);
-
-// Route for displaying the update account view
-router.get("/update", utilities.handleErrors(accountController.buildUpdateView));
-
-// Route for updating account information
-router.post("/update", utilities.handleErrors(accountController.updateAccount));
-
-// Route for changing account password
-router.post("/change-password", utilities.handleErrors(accountController.changePassword));
-
-// Route for logging out
-router.get("/logout", (req, res) => {
-    res.clearCookie("jwt"); // Clear JWT or session cookie
-    req.user = null; // Clear user data
-    res.redirect("/account/login"); // Redirect to login page
+  const title = "My Account";
+  res.render("account/account", {
+    title,
+    nav: res.locals.nav,
+    user: res.locals.accountData,
+  });
 });
 
-// Export the router
+// Route for submitting register form
+router.post(
+  '/register',
+  registationRules(),
+  checkRegData,
+  utilities.handleErrors(accountController.registerAccount)
+);
+
+// Process the login request
+router.post(
+  "/login",
+  loginRules(),
+  checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+);
+
+// Routes for updating account information
+router.get("/update", utilities.handleErrors(accountController.buildUpdateView));
+router.post("/update", utilities.handleErrors(accountController.updateAccount));
+router.post("/change-password", utilities.handleErrors(accountController.changePassword));
+
+// Route for logout
+router.get("/logout", (req, res) => {
+  res.clearCookie("jwt");
+  res.redirect("/");
+});
+
 module.exports = router;

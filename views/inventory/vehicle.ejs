@@ -1,11 +1,46 @@
+<!-- Content Heading -->
 <% if (title) { %>
-     <h1><%= title %></h1>
-     <% } else {
-       res.redirect('/')
-     } %>
- 
- <!-- Message Block -->
- <%# messages() %>
- 
- <!-- Inventory items display -->
-  <%- vehicleTemplate %>
+  <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
+
+<!-- Message Block -->
+<%- messages() %>
+
+<!-- Inventory items display -->
+<%- vehicleTemplate %>
+
+<!-- Review Section -->
+<div class="reviews">
+<h2>Reviews</h2>
+
+<!-- Existing Reviews -->
+<div class="review-list" id="review-list">
+<% if (reviews.length > 0) { %>
+  <% reviews.forEach(review => { %>
+    <div class="review">
+      <p><strong><%= review.screen_name %></strong>: <%= review.review_text %></p>
+    </div>
+  <% }); %>
+<% } else { %>
+  <p>No reviews yet for this item.</p>
+<% } %>
+</div>
+
+<!-- Review Form or Login Message -->
+<% if (loggedIn) { %>
+<form id="review-form">
+  <p>Logged in as: <%= accountName %></p>
+  <textarea name="review_text" placeholder="Leave your review" required></textarea>
+  <input type="hidden" name="inv_id" value="<%= inventoryId %>">
+  <input type="hidden" name="account_id" value="<%= accountId %>">
+  <button type="submit">Submit</button>
+</form>
+<p id="review-message" style="color: green;"></p>
+<% } else { %>
+<p>You must <a href="/account/login">log in</a> to leave a review.</p>
+<% } %>
+</div>
+
+<script src="/js/reviews.js"></script>

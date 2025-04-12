@@ -1,16 +1,17 @@
-const invModel = require("../models/inventory-model");
-const utilities = require("../utilities/");
+const invModel = require("../models/inventory-model")
+const utilities = require("../utilities/")
 const ReviewModel = require("../models/review-model");
 
-const invCont = {};
+
+const invCont = {}
 
 /* ***************************
  *  Build inventory by classification view
- *************************** */
-invCont.buildByClassificationId = async (req, res, next) => {
+ * ************************** */
+invCont.buildByClassificationId = async function (req, res, next) {
   try {
-    const { classificationId } = req.params; // Destructure for cleaner access
-    const data = await invModel.getInventoryByClassificationId(classificationId);
+    const classification_id = req.params.classificationId;
+    const data = await invModel.getInventoryByClassificationId(classification_id);
 
     if (!data || data.length === 0) {
       const error = new Error("Vehicle classification not found");
@@ -20,8 +21,7 @@ invCont.buildByClassificationId = async (req, res, next) => {
 
     const grid = await utilities.buildClassificationGrid(data);
     const nav = await utilities.getNav();
-    const className = data[0]?.classification_name || "Vehicles";
-
+    const className = data[0].classification_name;
     res.render("./inventory/classification", {
       title: `${className} Vehicles`,
       nav,
@@ -29,17 +29,18 @@ invCont.buildByClassificationId = async (req, res, next) => {
       errors: null,
     });
   } catch (error) {
-    console.error("Error in buildByClassificationId:", error.message);
     next(error);
   }
 };
 
+
 /* ***************************
- *  Build vehicle page by inventory ID
- *************************** */
-invCont.buildByInvId = async (req, res, next) => {
+ *  Build vehicle page by inventory id
+ * ************************** */
+invCont.buildByInvId = async function (req, res, next) {
   try {
-    const { invId } = req.params; // Destructure for cleaner access
+    const inv_id = req.params.invId;
+
     const accountId = req.session?.accountId || null;
     const accountFirstName = req.session?.accountFirstName || "";
     const accountLastName = req.session?.accountLastName || "";
@@ -48,7 +49,7 @@ invCont.buildByInvId = async (req, res, next) => {
         ? `${accountFirstName.charAt(0)}${accountLastName}`
         : null;
 
-    const data = await invModel.getDetailByVehicleId(invId);
+    const data = await invModel.getDetailByVehicleId(inv_id);
     if (!data) {
       const error = new Error("Vehicle not found");
       error.status = 404;
@@ -57,14 +58,15 @@ invCont.buildByInvId = async (req, res, next) => {
 
     console.log("Session data in buildByInvId:", req.session);
 
-    const reviews = await ReviewModel.getReviewsByInvId(invId);
+    const reviews = await ReviewModel.getReviewsByInvId(inv_id);
+
     const vehicleTemplate = await utilities.buildVehiclePage(data);
     const nav = await utilities.getNav();
     const vehicleName = `${data.inv_year} ${data.inv_make} ${data.inv_model}`;
 
     console.log("Rendering vehicle page with:", {
       loggedIn: !!req.session.accountId,
-      accountName: req.session.accountName || "",
+      accountName: req.session.accountName,
       accountId: req.session.accountId,
     });
 
@@ -76,36 +78,29 @@ invCont.buildByInvId = async (req, res, next) => {
       accountId,
       screenName,
       accountName: req.session.accountName || "",
-      inv_id: invId,
-      inventoryId: invId,
+      inv_id,
+      inventoryId: inv_id,
       loggedIn: !!req.session.accountId,
       errors: null,
     });
   } catch (error) {
-    console.error("Error in buildByInvId:", error.message);
+    console.error("Error in buildByInvId:", error);
     next(error);
   }
 };
 
 /* ***************************
- *  Return Inventory by Classification as JSON
- *************************** */
+ *  Return Inventory by Classification As JSON
+ * ************************** */
 invCont.getInventoryJSON = async (req, res, next) => {
-  try {
-    const classification_id = parseInt(req.params.classification_id, 10); // Ensure it's a number
-    const invData = await invModel.getInventoryByClassificationId(classification_id);
-
-    if (invData.length > 0 && invData[0].inv_id) {
-      return res.json(invData);
-    } else {
-      const error = new Error("No data returned for this classification");
-      error.status = 404;
-      throw error;
-    }
-  } catch (error) {
-    console.error("Error in getInventoryJSON:", error.message);
-    next(error);
+  const classification_id = parseInt(req.params.classification_id)
+  const invData = await invModel.getInventoryByClassificationId(classification_id)
+  if (invData[0].inv_id) {
+    return res.json(invData)
+  } else {
+    next(new Error("No data returned"))
   }
-};
+}
 
-module.exports = invCont;
+
+module.exports = invCont
