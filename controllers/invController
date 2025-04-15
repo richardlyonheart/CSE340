@@ -74,7 +74,6 @@ invCont.buildByInvId = async function (req, res, next) {
       title: vehicleName,
       nav,
       vehicleTemplate,
-      review,
       accountId,
       screenName,
       accountName: req.session.accountName || "",
