@@ -12,19 +12,19 @@
 <%- vehicleTemplate %>
 
 <!-- Review Section -->
-<div class="reviews">
-<h2>Reviews</h2>
+<div class="review">
+<h2>review</h2>
 
-<!-- Existing Reviews -->
+<!-- Existing review -->
 <div class="review-list" id="review-list">
-<% if (reviews.length > 0) { %>
-  <% reviews.forEach(review => { %>
+<% if (review.length > 0) { %>
+  <% review.forEach(review => { %>
     <div class="review">
       <p><strong><%= review.screen_name %></strong>: <%= review.review_text %></p>
     </div>
   <% }); %>
 <% } else { %>
-  <p>No reviews yet for this item.</p>
+  <p>No review yet for this item.</p>
 <% } %>
 </div>
 
@@ -43,4 +43,4 @@
 <% } %>
 </div>
 
-<script src="/js/reviews.js"></script>
+<script src="/js/review.js"></script>

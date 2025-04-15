@@ -58,7 +58,7 @@ invCont.buildByInvId = async function (req, res, next) {
 
     console.log("Session data in buildByInvId:", req.session);
 
-    //const reviews = await ReviewModel.getReviewsByInvId(inv_id);
+    //const review = await ReviewModel.getreviewByInvId(inv_id);
 
     const vehicleTemplate = await utilities.buildVehiclePage(data);
     const nav = await utilities.getNav();
@@ -74,7 +74,7 @@ invCont.buildByInvId = async function (req, res, next) {
       title: vehicleName,
       nav,
       vehicleTemplate,
-      reviews,
+      review,
       accountId,
       screenName,
       accountName: req.session.accountName || "",

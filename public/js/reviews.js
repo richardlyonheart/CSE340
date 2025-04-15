@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData(reviewForm);
     
         try {
-            const response = await fetch('/reviews/add', {
+            const response = await fetch('/review/add', {
             method: 'POST',
             body: JSON.stringify({
                 review_text: formData.get('review_text'),

@@ -12,7 +12,7 @@ class ReviewModel {
       return result.rows[0];
     }
   
-    static async getReviewsByInvId(invId) {
+    static async getreviewByInvId(invId) {
       const query = `
         SELECT r.review_text, r.review_date, 
                CONCAT(SUBSTRING(a.account_firstname, 1, 1), a.account_lastname) AS screen_name
