@@ -29,7 +29,7 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 router.get("/detail/:invId", utilities.handleErrors(invController.buildByInvId));
 
 router.post(
-  '/reviews/add',
+  '/review/add',
   ensureLoggedIn,
   [
     body('review_text').notEmpty().withMessage('Review text is required.'),
